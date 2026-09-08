@@ -17,13 +17,21 @@ const CONFIG = {
    CONFIGURAÇÕES INICIAIS
 ===================================================== */
 
-document.getElementById("localTexto").textContent =
-  CONFIG.localTexto;
+document.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById("mapa").href =
-  CONFIG.mapa;
+  const localTexto = document.getElementById("localTexto").innerHTML =
+  CONFIG.localTexto + "<br><small>N: 1042</small>";
+  const mapa = document.getElementById("mapa");
 
+  if (localTexto) {
+    localTexto.textContent = CONFIG.localTexto;
+  }
 
+  if (mapa) {
+    mapa.href = CONFIG.mapa;
+  }
+
+});
 /* =====================================================
    ABRIR CONVITE
 ===================================================== */
@@ -38,6 +46,8 @@ function abrirConvite() {
   criarConfetes(120);
 
   ativarRevelacao();
+
+  document.body.classList.remove("bloqueado");
 
   convite.scrollIntoView({
     behavior: "smooth"
@@ -996,3 +1006,7 @@ function mudarResposta() {
   enviandoResposta = false;
   input.focus();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("bloqueado");
+});
