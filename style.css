@@ -153,7 +153,19 @@ button {
   overflow: hidden;
   text-align: center;
   padding: 90px 20px;
-  min-height: 500px;
+  min-height: 650px;
+}
+@media (max-width: 650px) {
+
+  .apresentacao {
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* resto do seu código */
 }
 
 .apresentacao h2 .meu {
