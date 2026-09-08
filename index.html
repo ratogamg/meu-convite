@@ -28,10 +28,7 @@
         VOCÊ RECEBEU UM CONVITE ESPECIAL
       </p>
 
-      <h1>
-        Você está<br>
-        <span>convidado!</span> 🎉
-      </h1>
+      <h1 class="titulo-convite">Você está convidado! 🎉</h1>
 
       <p class="descricao">
         Prepare-se para um dia LOUCO,
@@ -115,6 +112,93 @@
       </div>
 
     </div>
+
+    <!-- =========================
+         MÚSICA
+    ========================== -->
+
+    <section class="card musica revelar">
+
+      <div class="video-musica">
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source src="video-fundo.mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+
+      <div class="musica-info">
+
+        <p class="pequeno-texto">
+          TRILHA SONORA
+        </p>
+
+        <h2 id="nomeMusica">
+          Escolha uma música 🎵
+        </h2>
+
+        <p>
+          Uma música para você já sentir a pressão doque vai rolar 🙈.
+        </p>
+
+      </div>
+
+
+      <!-- EQUALIZADOR -->
+
+      <div
+        class="equalizador"
+        id="equalizador"
+        aria-hidden="true"
+      >
+      </div>
+
+
+      <!-- CONTROLES -->
+
+      <div class="controles-musica">
+
+        <button
+          id="botaoMusica"
+          onclick="alternarMusica()"
+        >
+          ▶️
+        </button>
+
+        <button
+          id="botaoTrocar"
+          onclick="trocarMusica()"
+        >
+          ⏭️
+        </button>
+
+      </div>
+
+
+      <!-- PLAYLIST -->
+
+      <div
+        class="playlist"
+        id="playlist"
+      >
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ÁUDIO
+    ========================== -->
+
+   <audio id="musica" loop></audio>
+
+
 
 
     <!-- =========================
@@ -236,131 +320,42 @@
 
     </section>
 
+<!-- =========================
+     RECADO / PISCINA
+========================== -->
 
-    <!-- =========================
-         MÚSICA
-    ========================== -->
+<section class="card mensagem revelar">
 
-    <section class="card musica revelar">
+  <div
+    class="cavalo"
+    id="cavalo"
+    role="button"
+    tabindex="0"
+    aria-label="Cavalo mergulhador. Clique para ele nadar!"
+    title="Clica no cavalo!"
+  >
+  </div>
 
-      <div class="video-musica">
+  <p class="pequeno-texto">
+    RECADO IMPORTANTE!
+  </p>
 
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-        >
-          <source src="video-fundo.mp4" type="video/mp4">
-        </video>
+  <h2>
+    Tem piscina! 🏊‍♂️
+  </h2>
 
-      </div>
+  <p>
+    Para quem quiser aproveitar a piscina,
+    não esqueça de levar uma roupa para se trocar
+    caso queira tomar banho por lá.
+  </p>
 
-
-      <div class="musica-info">
-
-        <p class="pequeno-texto">
-          TRILHA SONORA
-        </p>
-
-        <h2 id="nomeMusica">
-          Escolha uma música 🎵
-        </h2>
-
-        <p>
-          Uma música para você já sentir a pressão.
-        </p>
-
-      </div>
+</section>
 
 
-      <!-- EQUALIZADOR -->
-
-      <div
-        class="equalizador"
-        id="equalizador"
-        aria-hidden="true"
-      >
-      </div>
-
-
-      <!-- CONTROLES -->
-
-      <div class="controles-musica">
-
-        <button
-          id="botaoMusica"
-          onclick="alternarMusica()"
-        >
-          ▶️
-        </button>
-
-        <button
-          id="botaoTrocar"
-          onclick="trocarMusica()"
-        >
-          ⏭️
-        </button>
-
-      </div>
-
-
-      <!-- PLAYLIST -->
-
-      <div
-        class="playlist"
-        id="playlist"
-      >
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         ÁUDIO
-    ========================== -->
-
-   <audio id="musica" loop></audio>
-
-
-    <!-- =========================
-         RECADO / PISCINA
-    ========================== -->
-
-    <section class="card mensagem revelar">
-
-      <!-- Cavalo clicável -->
-
-      <div
-        class="cavalo"
-        id="cavalo"
-        role="button"
-        tabindex="0"
-        aria-label="Cavalo mergulhador. Clique para ele nadar!"
-        title="Clica no cavalo!"
-      >
-      </div>
-
-      <p class="pequeno-texto">
-        RECADO IMPORTANTE!
-      </p>
-
-      <h2>
-        Tem piscina! 🏊‍♂️
-      </h2>
-
-      <p>
-        Para quem quiser aproveitar a piscina,
-        não esqueça de levar uma roupa para se trocar
-        caso queira tomar banho por lá.
-      </p>
-
-    </section>
-
-
-    <!-- =========================
-         CONFIRMAÇÃO
-    ========================== -->
+<!-- =========================
+     CONFIRMAÇÃO
+========================== -->
 
     <section class="card confirmacao revelar">
 
@@ -369,7 +364,7 @@
       </p>
 
       <h2>
-        Você vem? 🎉
+        Você vem? 👀
       </h2>
 
       <p>
@@ -405,7 +400,7 @@
         class="botao-nao"
         onclick="naoVou()"
       >
-        😢 Não vou
+        💔 Não vou
       </button>
 
 
