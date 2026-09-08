@@ -589,36 +589,39 @@ function escolherMusicaAleatoria() {
 ===================================================== */
 
 function alternarMusica() {
-
-  const musica =
-    document.getElementById("musica");
-
-  const botao =
-    document.getElementById("botaoMusica");
+  const musica = document.getElementById("musica");
+  const botao = document.getElementById("botaoMusica");
+  const equalizador = document.getElementById("equalizador");
 
   if (!musica.src) {
     escolherMusicaAleatoria();
   }
 
   if (musica.paused) {
-
     musica.play()
       .then(() => {
-        botao.textContent = "⏸️";
-      })
-      .catch((erro) => {
-        console.error(
-          "Erro ao tocar música:",
-          erro
-        );
+        botao.textContent = "😎";
+        equalizador.classList.add("tocando");
       });
-
   } else {
-
     musica.pause();
-
     botao.textContent = "▶️";
+    equalizador.classList.remove("tocando");
   }
+}
+
+function trocarMusica() {
+  escolherMusicaAleatoria();
+
+  const musica = document.getElementById("musica");
+  const botao = document.getElementById("botaoMusica");
+  const equalizador = document.getElementById("equalizador");
+
+  musica.play()
+    .then(() => {
+      botao.textContent = "😎";
+      equalizador.classList.add("tocando");
+    });
 }
 
 
@@ -639,7 +642,7 @@ function trocarMusica() {
   musica.play()
     .then(() => {
 
-      botao.textContent = "⏸️";
+      botao.textContent = "😎";
 
     })
     .catch((erro) => {
@@ -652,27 +655,8 @@ function trocarMusica() {
     });
 }
 
-
 /* =====================================================
    EQUALIZADOR
-===================================================== */
-
-let audioContext = null;
-
-let analyser = null;
-
-let fonteAudio = null;
-
-let dadosAudio = null;
-
-let equalizadorAtivo = false;
-
-
-const TOTAL_BARRAS = 14;
-
-
-/* =====================================================
-   CRIAR BARRAS
 ===================================================== */
 
 function criarBarras() {
@@ -682,154 +666,22 @@ function criarBarras() {
 
   if (!equalizador) return;
 
-
   equalizador.innerHTML = "";
 
-
-  for (
-    let i = 0;
-    i < TOTAL_BARRAS;
-    i++
-  ) {
+  for (let i = 0; i < 24; i++) {
 
     const barra =
       document.createElement("span");
 
+    /* Altura fixa enquanto estiver parado */
+    barra.style.height = "20px";
+
+    /* NENHUMA animação inicial */
+    barra.style.animation = "none";
+
     equalizador.appendChild(barra);
-
   }
-
 }
-
-
-/* =====================================================
-   INICIAR EQUALIZADOR
-===================================================== */
-
-function iniciarEqualizador() {
-
-  const audio =
-    document.getElementById("musica");
-
-  if (!audio) return;
-
-
-  try {
-
-    if (!audioContext) {
-
-      audioContext =
-        new (
-          window.AudioContext ||
-          window.webkitAudioContext
-        )();
-
-
-      analyser =
-        audioContext.createAnalyser();
-
-
-      analyser.fftSize = 64;
-
-
-      fonteAudio =
-        audioContext.createMediaElementSource(
-          audio
-        );
-
-
-      fonteAudio.connect(analyser);
-
-      analyser.connect(
-        audioContext.destination
-      );
-
-
-      dadosAudio =
-        new Uint8Array(
-          analyser.frequencyBinCount
-        );
-
-    }
-
-
-    if (
-      audioContext.state === "suspended"
-    ) {
-
-      audioContext.resume();
-
-    }
-
-
-    equalizadorAtivo = true;
-
-    animarEqualizador();
-
-  } catch (erro) {
-
-    console.log(
-      "Equalizador não disponível:",
-      erro
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   ANIMAR EQUALIZADOR
-===================================================== */
-
-function animarEqualizador() {
-
-  if (!equalizadorAtivo) return;
-
-
-  if (!analyser) return;
-
-
-  analyser.getByteFrequencyData(
-    dadosAudio
-  );
-
-
-  const barras =
-    document.querySelectorAll(
-      "#equalizador span"
-    );
-
-
-  barras.forEach(
-    (barra, indice) => {
-
-      const valor =
-        dadosAudio[
-          indice * 2
-        ] || 0;
-
-
-      const altura =
-        Math.max(
-          8,
-          (valor / 255) * 65
-        );
-
-
-      barra.style.height =
-        altura + "px";
-
-    }
-  );
-
-
-  requestAnimationFrame(
-    animarEqualizador
-  );
-
-}
-
 
 /* =====================================================
    CAVALO
@@ -1030,3 +882,27 @@ document.addEventListener("DOMContentLoaded", () => {
   ativarRevelacao();
 
 });
+
+function criarBarras() {
+
+  const equalizador =
+    document.getElementById("equalizador");
+
+  if (!equalizador) return;
+
+  equalizador.innerHTML = "";
+
+  for (let i = 0; i < 24; i++) {
+
+    const barra =
+      document.createElement("span");
+
+    barra.style.height = "20px";
+
+    // Cada barra começa em um ponto diferente da animação
+    barra.style.animationDelay =
+      `${Math.random() * 0.5}s`;
+
+    equalizador.appendChild(barra);
+  }
+}
