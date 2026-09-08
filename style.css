@@ -480,81 +480,97 @@ button {
   opacity: .7;
 }
 
-
 /* =========================
    EQUALIZADOR
 ========================= */
 
 .equalizador {
-  height: 70px;
+  height: 80px;
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: center;
   gap: 5px;
   margin: 25px 0;
 }
 
 .equalizador span {
-  width: 7px;
+  width: 6px;
   height: 20px;
-  background: #fff;
   border-radius: 10px;
-  transition: height .1s;
+  background: #d400ff;
+
+  box-shadow:
+    0 0 5px #000000,
+    0 0 10px #000000,
+    0 0 20px #000000,
+    0 0 35px #000000;
+
+  animation: none;
 }
 
+/* SÓ MEXE QUANDO ESTÁ TOCANDO */
+.equalizador.tocando span {
+  animation: vibrarNeon 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes vibrarNeon {
+
+  0% {
+    height: 10px;
+    transform: scaleY(0.5);
+  }
+
+  50% {
+    height: 55px;
+    transform: scaleY(1);
+  }
+
+  100% {
+    height: 25px;
+    transform: scaleY(0.7);
+  }
+
+}
 
 /* =========================
-   CONTROLES
+   EQUALIZADOR NEON
 ========================= */
 
 .controles-musica {
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .controles-musica button {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: #fff;
+  height: 48px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  background: rgba(255,255,255,.08);
+  color: white;
+  cursor: pointer;
   font-size: 20px;
+  transition: .2s ease;
+}
+
+#botaoMusica {
+  width: 120px;
+}
+
+#botaoTrocar {
+  width: 55px;
 }
 
 .controles-musica button:hover {
-  transform: scale(1.08);
-}
-
-
-/* =========================
-   PLAYLIST
-========================= */
-
-.playlist {
-  margin-top: 25px;
-  display: grid;
-  gap: 8px;
-}
-
-.faixa {
-  padding: 14px;
-  background: rgba(255,255,255,.08);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.faixa:hover {
   background: rgba(255,255,255,.16);
-  transform: translateX(5px);
+  transform: translateY(-2px);
 }
 
-.nota {
-  margin-right: 8px;
-}
-
-.nome-faixa {
-  font-weight: bold;
+.controles-musica button:active {
+  transform: scale(.95);
 }
 
 
