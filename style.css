@@ -108,6 +108,42 @@ button {
   padding: 30px 18px 60px;
 }
 
+.titulo-convite {
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+.titulo-convite::after {
+  content: "Você está convidado! 🎉";
+  position: absolute;
+  inset: 0;
+  color: white;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 40%,
+    rgb(51, 51, 51) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brilhoLetras 2.5s linear infinite;
+}
+
+@keyframes brilhoLetras {
+  from {
+    background-position: 250% center;
+  }
+
+  to {
+    background-position: -100% center;
+  }
+}
+
 /* =========================
    APRESENTAÇÃO
 ========================= */
@@ -415,7 +451,7 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center 10%;
-  opacity: .28;
+  opacity: .60;
 }
 
 .musica::after {
@@ -529,16 +565,34 @@ button {
 .mensagem {
   position: relative;
   overflow: hidden;
+
+  background-image: url("fundo-azul.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-.mensagem h2 {
-  font-size: 35px;
-  margin-bottom: 15px;
+.mensagem::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  background-image: url("foto-azul.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(90px);
+  z-index: 0;
 }
 
-.mensagem > p:last-child {
-  line-height: 1.7;
-  opacity: .75;
+.mensagem::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+  z-index: 0;
+}
+
+.mensagem > * {
+  position: relative;
+  z-index: 1;
 }
 
 
@@ -855,4 +909,23 @@ footer {
 
 .botao-localizacao:active {
   transform: scale(.95);
+}
+
+.emoji-tao {
+  display: inline-block;
+  animation: giroFluido 2s cubic-bezier(.65, 0, .35, 1) infinite;
+}
+
+@keyframes giroFluido {
+  0%, 65% {
+    transform: rotate(0deg);
+  }
+
+  85% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
