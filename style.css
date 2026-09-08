@@ -1015,3 +1015,19 @@ footer {
 body.bloqueado {
   overflow: hidden;
 }
+
+.video-musica video.video1 {
+  object-position: center 30%;
+}
+
+.video-musica video.video2 {
+  object-position: center 0%;
+}
+
+.video-musica video.video3 {
+  object-position: center 30%;
+}
+
+.video-musica video.video4 {
+  object-position: center 60%;
+}
