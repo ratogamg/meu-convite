@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  history.scrollRestoration = "manual";
+</script>
+
+  <title>Meu Aniversário 🎉</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       TELA INICIAL
+  ========================== -->
+
+  
+  <section id="inicio" class="tela-inicial">
+
+    <div class="inicio-conteudo">
+
+      <p class="pequeno-texto">
+        VOCÊ RECEBEU UM CONVITE ESPECIAL
+      </p>
+
+      <h1>
+        Você está<br>
+        <span>convidado!</span> 🎉
+      </h1>
+
+      <p class="descricao">
+        Prepare-se para um dia LOUCO,
+        cheio de diversão, músicas, momentos e resenhas
+        inesquecíveis.
+      </p>
+
+      <button class="botao-principal" onclick="abrirConvite()">
+        🎁 Abrir convite
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONVITE
+  ========================== -->
+
+  <main id="convite" class="convite">
+
+
+    <!-- =========================
+         APRESENTAÇÃO
+    ========================== -->
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-faixa">
+    <span>
+      PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•&nbsp;PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•
+    </span>
+
+    <span>
+      PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•&nbsp;PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•
+    </span>
+  </div>
+</div>
+
+
+<section class="secao apresentacao revelar">
+
+      <div class="foto-aniversario">
+    <img src="foto-aniversario.png" alt="">
+  </div>
+
+  <div class="olhos olhos-canto" aria-hidden="true">👀</div>
+
+<h2>
+  <span class="meu">M E U</span><br>
+  <span class="tao">
+  <span class="emoji-tao">🔞</span><span class="texto-tao">TÃO</span>
+</span>
+</h2>
+
+  <p>
+    Eu quero que você participe<br>
+    dessa resenha! 👀
+  </p>
+</section>
+
+
+    <!-- =========================
+         MARQUEE
+    ========================== -->
+
+    <div class="marquee" aria-hidden="true">
+
+      <div class="marquee-faixa">
+
+        <span>
+          PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•&nbsp;
+          PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•&nbsp;
+        </span>
+
+        <span>
+          PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•&nbsp;
+          PISCINA&nbsp;•&nbsp;FESTA&nbsp;•&nbsp;RESENHA&nbsp;•&nbsp;MÚSICA&nbsp;•&nbsp;
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         CONTAGEM REGRESSIVA
+    ========================== -->
+
+    <section class="card contagem revelar">
+
+      <p class="pequeno-texto">
+        FALTA POUCO!
+      </p>
+
+      <h2>
+        Contagem regressiva
+      </h2>
+
+      <div class="timer">
+
+        <div>
+          <strong id="dias">00</strong>
+          <span>dias</span>
+        </div>
+
+        <div>
+          <strong id="horas">00</strong>
+          <span>horas</span>
+        </div>
+
+        <div>
+          <strong id="minutos">00</strong>
+          <span>minutos</span>
+        </div>
+
+        <div>
+          <strong id="segundos">00</strong>
+          <span>segundos</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         INFORMAÇÕES DA FESTA
+    ========================== -->
+
+    <section class="informacoes">
+
+      <!-- DATA -->
+
+      <div class="card informacao revelar">
+
+        <div class="emoji">
+          📅
+        </div>
+
+        <h3>
+          Data
+        </h3>
+
+        <p id="dataTexto">
+          26 de setembro de 2026
+        </p>
+
+      </div>
+
+
+      <!-- HORÁRIO -->
+
+      <div class="card informacao card-horario revelar">
+
+        <div class="emoji" id="emojiRelogio">
+          🕐
+        </div>
+
+        <h3>
+          Horário
+        </h3>
+
+        <p id="horaTexto">
+          18:00
+        </p>
+
+        <p class="dica-clique">
+          clique no relógio ⏰
+        </p>
+
+      </div>
+
+
+      <!-- LOCAL -->
+
+      <div class="card informacao revelar">
+
+        <div class="emoji">
+          📍
+        </div>
+
+        <h3>
+          Local
+        </h3>
+
+        <p id="localTexto">
+          Salão da festa
+        </p>
+
+        <a
+  id="mapa"
+  class="botao-localizacao"
+  href="https://www.google.com/maps/@-1.3745902,-48.4478456,3a,75y,325.12h,75.34t/data=!3m7!1e1!3m5!1s26GFinLSIRu_KT1DkfBqLQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D14.659999999999997%26panoid%3D26GFinLSIRu_KT1DkfBqLQ%26yaw%3D325.12!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  📍 Ver localização
+</a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MÚSICA
+    ========================== -->
+
+    <section class="card musica revelar">
+
+      <div class="video-musica">
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source src="video-fundo.mp4" type="video/mp4">
+        </video>
+
+      </div>
+
+
+      <div class="musica-info">
+
+        <p class="pequeno-texto">
+          TRILHA SONORA
+        </p>
+
+        <h2 id="nomeMusica">
+          Escolha uma música 🎵
+        </h2>
+
+        <p>
+          Uma música para você já sentir a pressão.
+        </p>
+
+      </div>
+
+
+      <!-- EQUALIZADOR -->
+
+      <div
+        class="equalizador"
+        id="equalizador"
+        aria-hidden="true"
+      >
+      </div>
+
+
+      <!-- CONTROLES -->
+
+      <div class="controles-musica">
+
+        <button
+          id="botaoMusica"
+          onclick="alternarMusica()"
+        >
+          ▶️
+        </button>
+
+        <button
+          id="botaoTrocar"
+          onclick="trocarMusica()"
+        >
+          ⏭️
+        </button>
+
+      </div>
+
+
+      <!-- PLAYLIST -->
+
+      <div
+        class="playlist"
+        id="playlist"
+      >
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ÁUDIO
+    ========================== -->
+
+   <audio id="musica" loop></audio>
+
+
+    <!-- =========================
+         RECADO / PISCINA
+    ========================== -->
+
+    <section class="card mensagem revelar">
+
+      <!-- Cavalo clicável -->
+
+      <div
+        class="cavalo"
+        id="cavalo"
+        role="button"
+        tabindex="0"
+        aria-label="Cavalo mergulhador. Clique para ele nadar!"
+        title="Clica no cavalo!"
+      >
+      </div>
+
+      <p class="pequeno-texto">
+        RECADO IMPORTANTE!
+      </p>
+
+      <h2>
+        Tem piscina! 🏊‍♂️
+      </h2>
+
+      <p>
+        Para quem quiser aproveitar a piscina,
+        não esqueça de levar uma roupa para se trocar
+        caso queira tomar banho por lá.
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         CONFIRMAÇÃO
+    ========================== -->
+
+    <section class="card confirmacao revelar">
+
+      <p class="pequeno-texto">
+        CONFIRME SUA PRESENÇA
+      </p>
+
+      <h2>
+        Você vem? 🎉
+      </h2>
+
+      <p>
+        Digite seu nome para confirmar.
+      </p>
+
+
+      <!-- NOME -->
+
+      <input
+        type="text"
+        id="nomeConvidado"
+        placeholder="Digite seu nome"
+        maxlength="40"
+      >
+
+
+      <!-- CONFIRMAR -->
+
+      <button
+        id="botaoConfirmar"
+        class="botao-principal"
+        onclick="confirmarPresenca()"
+      >
+        🎉 Confirmar presença
+      </button>
+
+
+      <!-- NÃO VOU -->
+
+      <button
+        id="botaoNaoVou"
+        class="botao-nao"
+        onclick="naoVou()"
+      >
+        😢 Não vou
+      </button>
+
+
+      <!-- MUDAR RESPOSTA -->
+
+      <div
+        id="mudarResposta"
+        class="mudar-resposta escondido"
+      >
+
+        <p>
+          Quer mudar de ideia?
+        </p>
+
+        <button
+          class="botao-mudar"
+          onclick="mudarResposta()"
+        >
+          🔄 Mudar minha resposta
+        </button>
+
+      </div>
+
+
+      <!-- RESULTADO -->
+
+      <div
+        id="resposta"
+        class="resposta"
+      >
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer class="revelar">
+
+      bora? ja to arrumado aqui 😝 •
+      feito por mim mesmo
+
+    </footer>
+
+  </main>
+
+
+  <!-- =================================================
+       GATO DO CANHÃO DE CONFETE
+  ================================================== -->
+
+  <img
+    id="gatoConfete"
+    class="gato-confete"
+    src="gato-confete.png"
+    alt="Gato fantasiado de palhaço"
+    aria-hidden="true"
+  >
+
+
+  <!-- =========================
+       ÁREA DOS CONFETES
+  ========================== -->
+
+  <div id="confetes"></div>
+
+
+  <!-- =========================
+       SCRIPT DO SITE
+  ========================== -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
