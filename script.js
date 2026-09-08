@@ -5,6 +5,8 @@
 const CONFIG = {
   data: "2026-09-26T18:00:00",
 
+  servidor: "https://script.google.com/macros/s/AKfycbymcZgC8kR8FkWfkHG4mLeVRFVABk6inLM6kat4Cyybh-IIApbEPLlhC-4pADQp-mLq/exec",
+
   localTexto: "Salão da festa",
 
   mapa: "https://www.google.com/maps/place/R.+Ol%C3%A1vo+Nunes+-+Bengu%C3%AD,+Bel%C3%A9m+-+PA,+66630-315/@-1.3745902,-48.4478456,3a,75y,325.12h,75.34t/data=!3m7!1e1!3m5!1s26GFinLSIRu_KT1DkfBqLQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D14.65728841354111%26panoid%3D26GFinLSIRu_KT1DkfBqLQ%26yaw%3D325.1239048978889!7i16384!8i8192!4m15!1m8!3m7!1s0x92a48a7a02dd7b4b:0x34562b65ba80596f!2sR.+Ol%C3%A1vo+Nunes+-+Bengu%C3%AD,+Bel%C3%A9m+-+PA,+66630-315!3b1!8m2!3d-1.3745963!4d-48.4480934!16s%2Fg%2F1ymwbbwjl!3m5!1s0x92a48a7a02dd7b4b:0x34562b65ba80596f!8m2!3d-1.3745963!4d-48.4480934!16s%2Fg%2F1ymwbbwjl?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
@@ -605,7 +607,7 @@ function alternarMusica() {
       });
   } else {
     musica.pause();
-    botao.textContent = "▶️";
+    botao.textContent = "✋";
     equalizador.classList.remove("tocando");
   }
 }
@@ -621,37 +623,6 @@ function trocarMusica() {
     .then(() => {
       botao.textContent = "😎";
       equalizador.classList.add("tocando");
-    });
-}
-
-
-/* =====================================================
-   TROCAR MÚSICA
-===================================================== */
-
-function trocarMusica() {
-
-  escolherMusicaAleatoria();
-
-  const musica =
-    document.getElementById("musica");
-
-  const botao =
-    document.getElementById("botaoMusica");
-
-  musica.play()
-    .then(() => {
-
-      botao.textContent = "😎";
-
-    })
-    .catch((erro) => {
-
-      console.error(
-        "Erro ao trocar música:",
-        erro
-      );
-
     });
 }
 
@@ -905,4 +876,123 @@ function criarBarras() {
 
     equalizador.appendChild(barra);
   }
+}
+
+/* =====================================================
+   PEGAR ID DO CONVITE
+===================================================== */
+
+function pegarIdConvite() {
+
+  const parametros =
+    new URLSearchParams(window.location.search);
+
+  return parametros.get("id") || "";
+
+}
+
+
+/* =====================================================
+   ENVIAR RESPOSTA
+===================================================== */
+
+let enviandoResposta = false;
+
+async function enviarResposta(respostaEscolhida) {
+  if (enviandoResposta) return;
+
+  const input = document.getElementById("nomeConvidado");
+  const resposta = document.getElementById("resposta");
+  const botaoConfirmar = document.getElementById("botaoConfirmar");
+  const botaoNaoVou = document.getElementById("botaoNaoVou");
+  const mudar = document.getElementById("mudarResposta");
+
+  const nome = input.value.trim();
+
+  if (!nome) {
+    resposta.textContent = "Digite seu nome primeiro 😭";
+    input.focus();
+    return;
+  }
+
+  enviandoResposta = true;
+
+  botaoConfirmar.disabled = true;
+  botaoNaoVou.disabled = true;
+
+  resposta.textContent = "⏳ Registrando sua resposta...";
+
+  try {
+    await fetch(CONFIG.servidor, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        nome: nome,
+        resposta: respostaEscolhida
+      })
+    });
+
+    input.disabled = true;
+
+    botaoConfirmar.classList.add("escondido");
+    botaoNaoVou.classList.add("escondido");
+    mudar.classList.remove("escondido");
+
+    if (respostaEscolhida === "VAI") {
+      resposta.innerHTML =
+        `🎉 <strong>${nome}</strong>, presença confirmada!<br>
+        Te espero na festa! 🔥`;
+
+      criarConfetes(200);
+      gatoAtiraConfetes();
+    } else {
+      resposta.innerHTML =
+        `😢 Tudo bem, <strong>${nome}</strong>.<br>
+        Espero que consiga ir em outra!`;
+    }
+
+  } catch (erro) {
+    console.error("Erro ao enviar resposta:", erro);
+
+    resposta.innerHTML =
+      `❌ Não conseguimos registrar sua resposta.<br>
+      Verifique sua internet e tente novamente.`;
+
+    botaoConfirmar.disabled = false;
+    botaoNaoVou.disabled = false;
+    enviandoResposta = false;
+  }
+}
+
+function confirmarPresenca() {
+  enviarResposta("VAI");
+}
+
+function naoVou() {
+  enviarResposta("NÃO VOU");
+}
+
+function mudarResposta() {
+  const input = document.getElementById("nomeConvidado");
+  const resposta = document.getElementById("resposta");
+  const botaoConfirmar = document.getElementById("botaoConfirmar");
+  const botaoNaoVou = document.getElementById("botaoNaoVou");
+  const mudar = document.getElementById("mudarResposta");
+
+  input.disabled = false;
+  input.value = "";
+  resposta.innerHTML = "";
+
+  botaoConfirmar.disabled = false;
+  botaoNaoVou.disabled = false;
+
+  botaoConfirmar.classList.remove("escondido");
+  botaoNaoVou.classList.remove("escondido");
+  mudar.classList.add("escondido");
+
+  enviandoResposta = false;
+  input.focus();
 }
