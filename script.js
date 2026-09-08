@@ -540,22 +540,47 @@ function mudarResposta() {
 ===================================================== */
 
 const musicas = [
+
   {
+
     arquivo: "musica1.mp3",
-    nome: "Homenagem ao Gw 2"
+
+    nome: "Homenagem ao Gw 2",
+
+    video: "video1.mp4"
+
   },
+
   {
+
     arquivo: "musica2.mp3",
-    nome: "Arrocha pro Seu Safado"
+
+    nome: "Arrocha pro Seu Safado",
+
+    video: "video2.mp4"
+
   },
+
   {
+
     arquivo: "musica3.mp3",
-    nome: "Equipe Caos"
+
+    nome: "JUNIOR E NETO - VIVER SEM TI",
+
+    video: "video3.mp4"
+
   },
+
   {
+
     arquivo: "musica4.mp3",
-    nome: "Eu Vou Te Pegar"
+
+    nome: "Eu Vou Te Pegar",
+
+    video: "video4.mp4"
+
   }
+
 ];
 
 let musicaAtual = -1;
@@ -588,13 +613,40 @@ function escolherMusicaAleatoria() {
   const nomeMusica =
     document.getElementById("nomeMusica");
 
+  const video =
+    document.getElementById("videoFundo");
+
   musica.src =
     musicas[musicaAtual].arquivo;
 
   nomeMusica.textContent =
     musicas[musicaAtual].nome;
-}
 
+  if (video) {
+
+    video.classList.remove(
+      "video1",
+      "video2",
+      "video3",
+      "video4"
+    );
+
+    video.classList.add(
+      "video" + (musicaAtual + 1)
+    );
+
+    video.src =
+      musicas[musicaAtual].video;
+
+    video.load();
+
+    if (!musica.paused) {
+      video.play().catch(() => {});
+    }
+
+  }
+
+}
 
 /* =====================================================
    TOCAR / PAUSAR
