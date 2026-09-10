@@ -1034,7 +1034,7 @@ function confirmarPresenca() {
 }
 
 function naoVou() {
-  enviarResposta("NÃO VOU");
+  enviarResposta("NÃO VAI");
 }
 
 function mudarResposta() {
